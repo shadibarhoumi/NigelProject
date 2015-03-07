@@ -1,0 +1,94 @@
+html { 
+  background: url(../images/darkBackground.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body {
+	min-width: 900px;
+	color: #E8C927;
+
+}
+
+.taunt {
+	position: absolute;
+	top: 350px;
+	left: 250px;
+	font-size: 120px;
+	font-family: 'Ceviche One', sans-serif;
+	font-weight: 400;
+	color: #B218E5;
+	text-shadow: 0px 0px 2px #333;
+}
+
+.winner {
+	position: absolute;
+	top: 350px;
+	left: 400px;
+	color: red;
+	font-size: 190px;
+	font-family: 'Ceviche One', sans-serif;
+	font-weight: 400;
+	text-shadow: 0px 0px 68px #000;
+
+}
+
+.container {
+	margin: 0 auto;
+	width: 80%;
+	height: 100%;
+	position: relative;
+}
+
+.gameName {
+	width: 850px;
+	font-size: 120px;
+	margin: 0 auto;
+	padding-top: 20px;
+	font-family: 'Ceviche One', sans-serif;
+	font-weight: 400;
+	color: #FF8800;
+	text-shadow: 0px 0px 2px #333;
+
+}
+
+.hoops {
+	font-family: 'Ceviche One', sans-serif;
+	text-transform: uppercase;
+}
+
+.title {
+	text-shadow: 0px 0px 8px #333;
+	font-size: 100px;
+	top: 200px;
+	position: absolute;
+	font-family: 'Luckiest Guy', sans-serif;
+	letter-spacing: 3px;
+
+}
+
+.p1Title {
+	left: 100px;
+}
+
+.p2Title {
+	right: 100px;
+}
+
+.score {
+	text-shadow: 0px 0px 8px #333;
+	position: absolute;
+	top: 350px;
+	font-size: 200px;
+	font-family: 'Luckiest Guy', sans-serif;
+}
+
+.p1Score {
+	left: 210px;
+}
+
+.p2Score {
+	right: 240px;
+}
