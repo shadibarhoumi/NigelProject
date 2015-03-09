@@ -57,6 +57,11 @@ $(document).ready(function() {
 		loop: true
 	});
 
+	// load cheer sound
+	var cheer = new Howl({
+	  urls: ['sounds/cheer.mp3']
+	});
+
 	var player1Score = 0;
 	var player2Score = 0;
 	var winningScore = 2;
@@ -80,6 +85,8 @@ $(document).ready(function() {
 						.transition({scale: 1.0}, {duration: '50ms'});
 					
 					if (player1Score >= winningScore) {
+						lastWin = Date.now();
+						cheer.play();
 						gameOverMessage("Player 1 wins!");
 						gameRunning = false;
 					} else {
@@ -95,6 +102,8 @@ $(document).ready(function() {
 					$('.p2Score').transition({scale: 1.8}, {duration: '50ms'}).transition({scale: 1.0}, {duration: '50ms'});
 					
 					if (player2Score >= winningScore) {
+						lastWin = Date.now();
+						cheer.play();
 						gameOverMessage("Player 2 wins!");
 						gameRunning = false;
 					} else {
@@ -136,7 +145,6 @@ var taunt = function(soundInfo, sounds) {
 };
 
 var gameOverMessage = function(message) {
-	lastWin = Date.now();
 	var randomDegree = Math.floor(Math.random() * 360);
 	$('body').addClass('dimmed');
 	$('.winner').html(message)
