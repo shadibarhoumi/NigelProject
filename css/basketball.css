@@ -9,29 +9,33 @@ html {
 body {
 	min-width: 900px;
 	color: #E8C927;
-
 }
 
 .taunt {
 	position: absolute;
 	top: 350px;
 	left: 250px;
-	font-size: 120px;
+	font-size: 90px;
 	font-family: 'Ceviche One', sans-serif;
 	font-weight: 400;
 	color: #B218E5;
 	text-shadow: 0px 0px 2px #333;
 }
 
+.hidden {
+	display: none;
+}
+
 .winner {
 	position: absolute;
-	top: 350px;
-	left: 400px;
+	top: 220px;
+	left: 150px;
 	color: red;
-	font-size: 190px;
+	font-size: 120px;
 	font-family: 'Ceviche One', sans-serif;
 	font-weight: 400;
 	text-shadow: 0px 0px 68px #000;
+	z-index: 12;
 
 }
 
@@ -61,7 +65,7 @@ body {
 
 .title {
 	text-shadow: 0px 0px 8px #333;
-	font-size: 100px;
+	font-size: 80px;
 	top: 200px;
 	position: absolute;
 	font-family: 'Luckiest Guy', sans-serif;
@@ -70,25 +74,88 @@ body {
 }
 
 .p1Title {
-	left: 100px;
+	left: 50px;
 }
 
 .p2Title {
-	right: 100px;
+	right: 50px;
 }
 
 .score {
 	text-shadow: 0px 0px 8px #333;
 	position: absolute;
-	top: 350px;
+	top: 300px;
 	font-size: 200px;
 	font-family: 'Luckiest Guy', sans-serif;
+	margin-bottom: 0;
 }
 
 .p1Score {
-	left: 210px;
+	left: 130px;
 }
 
 .p2Score {
-	right: 240px;
+	right: 130px;
+}
+
+.playAgain {
+	color: white;
+	text-transform: uppercase;
+	z-index: 12;
+	position: absolute;
+	left: 270px;
+	font-size: 40px;
+	bottom: 150px;
+	font-family: 'Codystar';
+}
+
+.dimmed {
+  position: relative;
+}
+
+.dimmed:after {
+  content: " ";
+  z-index: 10;
+  display: block;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.blink {
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    
+    -moz-animation-name: blinker;
+    -moz-animation-duration: 1s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
+    
+    animation-name: blinker;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@-moz-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+@keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
 }

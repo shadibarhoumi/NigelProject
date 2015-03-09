@@ -51,33 +51,70 @@ $(document).ready(function() {
 	  urls: ['sounds/swish.mp3']
 	});
 
+	var music = new Howl({
+		urls: ['sounds/sugahDaddy.mp3'],
+		autoplay: true,
+		loop: true
+	});
+
 	var player1Score = 0;
 	var player2Score = 0;
-	var winningScore = 10;
+	var winningScore = 2;
 	var gameRunning = true;
+
+	var lastP1Basket = 0;
+	var lastP2Basket = 0;
+	var minShotInterval = 1000;
+
+	lastWin = 0;
 
 	$(document).keyup(function(e) {
 		if (gameRunning) { // if nobody has won yet
 			if (e.which === 37) { // if left arrow key is pressed
-				player1Score++;
-				$('.p1Score').html(player1Score);
-				swish.play();
-				$('.p1Score').transition({scale: 1.8}, {duration: '50ms'})
-					.transition({scale: 1.0}, {duration: '50ms'});
-				taunt(soundInfo, sounds);
-				if (player1Score >= winningScore) {
-					gameOverMessage("Player 1 wins!");
-					gameRunning = false;
+				if (Date.now() - lastP1Basket > minShotInterval) {
+					lastP1Basket = Date.now();
+					player1Score++;
+					$('.p1Score').html(player1Score);
+					swish.play();
+					$('.p1Score').transition({scale: 1.8}, {duration: '50ms'})
+						.transition({scale: 1.0}, {duration: '50ms'});
+					
+					if (player1Score >= winningScore) {
+						gameOverMessage("Player 1 wins!");
+						gameRunning = false;
+					} else {
+						taunt(soundInfo, sounds);	
+					}
 				}
 			} else if (e.which === 39) {
-				player2Score++;
-				$('.p2Score').html(player2Score);
-				swish.play();
-				$('.p2Score').transition({scale: 1.8}, {duration: '50ms'}).transition({scale: 1.0}, {duration: '50ms'});
-				taunt(soundInfo, sounds);
-				if (player2Score >= winningScore) {
-					gameOverMessage("Player 2 wins!");
-					gameRunning = false;
+				if (Date.now() - lastP2Basket > minShotInterval) {
+					lastP2Basket = Date.now();
+					player2Score++;
+					$('.p2Score').html(player2Score);
+					swish.play();
+					$('.p2Score').transition({scale: 1.8}, {duration: '50ms'}).transition({scale: 1.0}, {duration: '50ms'});
+					
+					if (player2Score >= winningScore) {
+						gameOverMessage("Player 2 wins!");
+						gameRunning = false;
+					} else {
+						taunt(soundInfo, sounds);
+					}
+				}
+			}
+		} else {
+			if (e.which === 32) {
+				console.log(Date.now(), lastWin);
+				if (Date.now() - lastWin > 2100) {
+					lastWin = Date.now();
+					gameRunning = true;
+					player1Score = 0;
+					player2Score = 0;
+					$('.winner').transition({scale: 0}, {duration: '200ms'});
+					$('body').removeClass('dimmed');
+					$('.p1Score').html(player1Score);
+					$('.p2Score').html(player2Score);
+					$('.playAgain').addClass('hidden');
 				}
 			}
 		}
@@ -99,9 +136,15 @@ var taunt = function(soundInfo, sounds) {
 };
 
 var gameOverMessage = function(message) {
+	lastWin = Date.now();
 	var randomDegree = Math.floor(Math.random() * 360);
+	$('body').addClass('dimmed');
 	$('.winner').html(message)
 		.transition({scale: 1.5}, {delay: '200ms'})
 		.transition({rotate: '+=' + randomDegree + 'deg'})
 		.transition({rotate: '-=' + randomDegree + 'deg'});
+	setTimeout(function() {
+		$('.playAgain').removeClass('hidden');
+	}, 2000);
+
 }
