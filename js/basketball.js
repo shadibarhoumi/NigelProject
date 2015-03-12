@@ -60,7 +60,7 @@ $(document).ready(function() {
 
 	var player1Score = 0;
 	var player2Score = 0;
-	var winningScore = 2;
+	var winningScore = 10;
 	var gameRunning = true;
 
 	var lastP1Basket = 0;
