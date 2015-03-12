@@ -34,10 +34,6 @@ $(document).ready(function() {
 		}
 	];
 
-	// var backgroundMusic = new Howl({
-	//   urls: ['sounds/swish.mp3']
-	// });
-
 	// loads sounds into an array
 	var sounds = [];
 	for (var i = 0; i < soundInfo.length; i++) {
@@ -64,7 +60,7 @@ $(document).ready(function() {
 
 	var player1Score = 0;
 	var player2Score = 0;
-	var winningScore = 10;
+	var winningScore = 2;
 	var gameRunning = true;
 
 	var lastP1Basket = 0;
@@ -111,24 +107,25 @@ $(document).ready(function() {
 					}
 				}
 			}
-		} else {
-			if (e.which === 32) {
-				console.log(Date.now(), lastWin);
-				if (Date.now() - lastWin > 2100) {
-					lastWin = Date.now();
-					gameRunning = true;
-					player1Score = 0;
-					player2Score = 0;
-					$('.winner').transition({scale: 0}, {duration: '200ms'});
-					$('body').removeClass('dimmed');
-					$('.p1Score').html(player1Score);
-					$('.p2Score').html(player2Score);
-					$('.playAgain').addClass('hidden');
-				}
-			}
 		}
 		e.preventDefault();
 	});
+
+	$('.playAgain').click(function() {
+		if (Date.now() - lastWin > 2100) {
+			lastWin = Date.now();
+			gameRunning = true;
+			player1Score = 0;
+			player2Score = 0;
+			$('.winner').transition({scale: 0}, {duration: '500ms'});
+			$('body').removeClass('dimmed');
+			$('.p1Score').html(player1Score);
+			$('.p2Score').html(player2Score);
+			$('.playAgain').addClass('hidden');
+		}
+		e.preventDefault();
+	});
+
 });
 
 var taunt = function(soundInfo, sounds) {

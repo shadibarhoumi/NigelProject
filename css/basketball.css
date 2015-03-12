@@ -29,7 +29,7 @@ body {
 .winner {
 	position: absolute;
 	top: 220px;
-	left: 150px;
+	left: 180px;
 	color: red;
 	font-size: 120px;
 	font-family: 'Ceviche One', sans-serif;
